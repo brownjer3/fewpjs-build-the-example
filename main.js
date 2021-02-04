@@ -3,6 +3,31 @@ const EMPTY_HEART = '♡'
 const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
+ const likesArray = document.getElementsByClassName('like')
+
+ for (const like of likesArray) {
+   like.addEventListener('click', (e) => {likeAction(e.target)})
+ }
+
+ function likeAction(heart) {
+  mimicServerCall("fake?")
+  .then(submitLike(heart))
+  .catch(() => {
+    alert("ERROR")
+  })
+
+  function submitLike(heart) {
+    if (heart.innerText == EMPTY_HEART) {
+      heart.innerText = FULL_HEART
+      heart.style.color = 'red'
+    } else {
+      heart.innerText = EMPTY_HEART
+      heart.style.color = ''
+    }
+
+  }
+
+ }
 
 
 
